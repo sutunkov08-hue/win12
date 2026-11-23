@@ -1,0 +1,42 @@
+{
+  "name": "windows-12",
+  "productName": "Windows 12",
+  "version": "1.0.0",
+  "description": "Windows 12 Concept — desktop environment app with a real file explorer, built on Electron",
+  "author": "sutunkov08-hue",
+  "license": "MIT",
+  "main": "main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis",
+    "dist-portable": "electron-builder --win portable",
+    "test": "node smoke.test.js"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8",
+    "jsdom": "^31.0.1"
+  },
+  "build": {
+    "appId": "com.sutunkov08.win12",
+    "productName": "Windows 12",
+    "files": [
+      "main/**/*",
+      "renderer/**/*",
+      "assets/**/*"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "assets/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "Windows 12"
+    }
+  }
+}

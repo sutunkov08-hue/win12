@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' file: data:; style-src 'self' 'unsafe-inline'; img-src 'self' file: data:; script-src 'self'">
+  <title>Windows 12</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="apps.css">
+</head>
+<body>
+  <div id="desktop">
+    <div id="wallpaper"></div>
+
+    <div id="desktop-icons"></div>
+
+    <div id="windows-layer"></div>
+    <div id="snap-preview"></div>
+
+    <div id="start-menu">
+      <input id="start-search" type="text" placeholder="Введите текст для поиска" autocomplete="off">
+      <div class="sm-row">
+        <span class="sm-label">Закреплено</span>
+        <button class="sm-allapps" id="start-allapps">Все приложения <span class="glyph">&#xE76C;</span></button>
+      </div>
+      <div id="start-pinned"></div>
+      <div class="sm-row"><span class="sm-label">Рекомендуем</span></div>
+      <div id="start-recommended"></div>
+      <div class="sm-footer">
+        <button id="start-user"><span class="avatar">&#xE77B;</span> <span id="start-username">Пользователь</span></button>
+        <button id="start-power" title="Выход"><span class="glyph">&#xE7E8;</span></button>
+      </div>
+    </div>
+
+    <div id="context-menu"></div>
+
+    <div id="taskbar">
+      <div class="tb-center">
+        <button class="tb-btn tb-start" id="btn-start" title="Пуск"><span class="glyph win-logo">&#xE7F8;</span></button>
+        <button class="tb-btn" id="btn-search" title="Поиск"><span class="glyph">&#xE721;</span></button>
+        <button class="tb-btn" id="btn-taskview" title="Представление задач"><span class="glyph">&#xE7C4;</span></button>
+        <div id="tb-apps"></div>
+      </div>
+      <div class="tb-right">
+        <span class="glyph tb-tray" title="Сеть">&#xE701;</span>
+        <span class="glyph tb-tray" title="Звук">&#xE767;</span>
+        <span class="glyph tb-tray" title="Батарея">&#xE850;</span>
+        <div class="tb-clock"><div id="tb-time">00:00</div><div id="tb-date">01.01.2025</div></div>
+      </div>
+    </div>
+  </div>
+  <script src="apps.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
