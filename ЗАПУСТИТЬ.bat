@@ -5,15 +5,14 @@ cd /d "%~dp0"
 
 where node >nul 2>nul
 if errorlevel 1 (
-  color 4F
   echo.
   echo  =====================================================
-  echo   Node.js НЕ УСТАНОВЛЕН!
+  echo   Node.js NOT INSTALLED!
   echo.
-  echo   1. Зайди на сайт:  https://nodejs.org
-  echo   2. Скачай версию LTS (зелёная кнопка)
-  echo   3. Установи как обычную программу
-  echo   4. Снова запусти этот файл
+  echo   1. Otkroy sayt:  https://nodejs.org
+  echo   2. Skachay versiyu LTS
+  echo   3. Ustanovi kak obichnuyu programmu (Next, Next, Next)
+  echo   4. Snova zapusti etot fayl
   echo  =====================================================
   echo.
   pause
@@ -21,27 +20,30 @@ if errorlevel 1 (
 )
 
 if not exist node_modules (
-  color 3F
   echo.
-  echo  ПЕРВЫЙ ЗАПУСК: устанавливаю компоненты...
-  echo  Это займёт 1-2 минуты, просто подожди.
+  echo  PERVY ZAPUSK: ustanavlivayu komponenty...
+  echo  Eto zaymyot 1-2 minuty, prosto podozhdi.
   echo.
   call npm install
-  if errorlevel 1 (
-    color 4F
-    echo.
-    echo  ОШИБКА установки. Проверь интернет и попробуй снова.
-    pause
-    exit /b
-  )
+  if errorlevel 1 goto install_error
 )
 
-color 2F
 echo.
 echo  =========================================
-echo    ЗАПУСКАЮ WINDOWS 12...
-echo    (окно откроется через пару секунд)
-echo    НЕ ЗАКРЫВАЙ это чёрное окно, пока играешь!
+echo    ZAPUSKAYU WINDOWS 12...
+echo    Ne zakryvay eto chornoe okno,
+echo    poka khochesh, chtoby rabotala.
 echo  =========================================
 echo.
 call npm start
+goto end
+
+:install_error
+echo.
+echo  OSHIBKA ustanovki. Prover internet i poprobuj snova.
+echo  Esli ne poluchaetsya - prishli skrin okna.
+pause
+goto end
+
+:end
+pause

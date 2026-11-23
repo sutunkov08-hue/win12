@@ -5,15 +5,14 @@ cd /d "%~dp0"
 
 where node >nul 2>nul
 if errorlevel 1 (
-  color 4F
   echo.
   echo  =====================================================
-  echo   Node.js НЕ УСТАНОВЛЕН!
+  echo   Node.js NOT INSTALLED!
   echo.
-  echo   1. Зайди на сайт:  https://nodejs.org
-  echo   2. Скачай версию LTS (зелёная кнопка)
-  echo   3. Установи как обычную программу
-  echo   4. Снова запусти этот файл
+  echo   1. Otkroy sayt:  https://nodejs.org
+  echo   2. Skachay versiyu LTS
+  echo   3. Ustanovi kak obichnuyu programmu (Next, Next, Next)
+  echo   4. Snova zapusti etot fayl
   echo  =====================================================
   echo.
   pause
@@ -21,26 +20,33 @@ if errorlevel 1 (
 )
 
 if not exist node_modules (
-  color 3F
   echo.
-  echo  ПЕРВЫЙ ЗАПУСК: устанавливаю компоненты...
-  echo  Это займёт 1-2 минуты, просто подожди.
+  echo  PERVY ZAPUSK: ustanavlivayu komponenty...
+  echo  Eto zaymyot 1-2 minuty, prosto podozhdi.
   echo.
   call npm install
 )
 
-color 3F
 echo.
 echo  =========================================
-echo    СОБИРАЮ УСТАНОВЩИК WINDOWS 12...
-echo    Займёт 2-5 минут, подожди.
+echo    SOBIRAYU USTANOVSHIK WINDOWS 12...
+echo    Zaymyot 2-5 minut, NE zakryvay okno.
+echo    Vse podrobnosti budut v fayle:
+echo    build-log.txt
 echo  =========================================
 echo.
-call npm run dist
-if errorlevel 1 (
+
+if exist build-log.txt del /q build-log.txt
+call npm run dist > build-log.txt 2>&1
+type build-log.txt
+
+if not exist dist (
   color 4F
   echo.
-  echo  ОШИБКА сборки. Сфоткай/скопируй текст выше и покажи мне.
+  echo  =====================================================
+  echo   SBORKA NE UDALAS. Smotri soobshcheniya vyshe ili
+  echo   prishli soderzhimoe fayla build-log.txt.
+  echo  =====================================================
   pause
   exit /b
 )
@@ -48,13 +54,14 @@ if errorlevel 1 (
 color 2F
 echo.
 echo  =========================================
-echo    ГОТОВО! Установщик здесь:
+echo    GOTovo! Ustanovshik zdes:
 echo.
-echo    папка dist  -  файл "Windows 12 Setup 1.0.0.exe"
+echo    papka dist  -  fayl "Windows 12 Setup 1.0.0.exe"
+echo    (ili podobnyy .exe imya)
 echo.
-echo    Установи его - и на рабочем столе
-echo    появится ярлык "Windows 12"
+echo    Ustanovi ego - i na rabochom stole
+echo    poyavitsya yarchik "Windows 12"
 echo  =========================================
 echo.
-start "" "dist"
+start "" explorer "%~dp0dist"
 pause
